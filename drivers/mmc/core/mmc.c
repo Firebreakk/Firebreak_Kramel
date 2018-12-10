@@ -2204,6 +2204,7 @@ reinit:
 	 * the existence of cache and it can be turned on.
 	 * If HPI is not supported then cache shouldn't be enabled.
 	 */
+<<<<<<< HEAD
 	if (!mmc_card_broken_hpi(card) && card->ext_csd.cache_size > 0) {
 		if (card->ext_csd.hpi_en &&
 			(!(card->quirks & MMC_QUIRK_CACHE_DISABLE))) {
@@ -2215,6 +2216,14 @@ reinit:
 					mmc_hostname(host), __func__, err);
 				goto free_card;
 			}
+=======
+	if (card->ext_csd.cache_size > 0) {
+		err = mmc_switch(card, EXT_CSD_CMD_SET_NORMAL,
+				EXT_CSD_CACHE_CTRL, 1,
+				card->ext_csd.generic_cmd6_time);
+		if (err && err != -EBADMSG)
+			goto free_card;
+>>>>>>> 2b591835dcc5... mmc: core: Allow BKOPS and CACHE ctrl even if no HPI support
 
 			/*
 			 * Only if no error, cache is turned on successfully.
