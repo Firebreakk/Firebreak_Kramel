@@ -1081,7 +1081,7 @@ int __mhi_device_get_sync(struct mhi_controller *mhi_cntrl)
 	return 0;
 }
 
-void mhi_device_get(struct mhi_device *mhi_dev)
+void mhi_device_get(struct mhi_device *mhi_dev, int vote)
 {
 	struct mhi_controller *mhi_cntrl = mhi_dev->mhi_cntrl;
 
@@ -1092,7 +1092,7 @@ void mhi_device_get(struct mhi_device *mhi_dev)
 }
 EXPORT_SYMBOL(mhi_device_get);
 
-int mhi_device_get_sync(struct mhi_device *mhi_dev)
+int mhi_device_get_sync(struct mhi_device *mhi_dev, int vote)
 {
 	struct mhi_controller *mhi_cntrl = mhi_dev->mhi_cntrl;
 	int ret;
@@ -1105,7 +1105,7 @@ int mhi_device_get_sync(struct mhi_device *mhi_dev)
 }
 EXPORT_SYMBOL(mhi_device_get_sync);
 
-void mhi_device_put(struct mhi_device *mhi_dev)
+void mhi_device_put(struct mhi_device *mhi_dev, int vote)
 {
 	struct mhi_controller *mhi_cntrl = mhi_dev->mhi_cntrl;
 
