@@ -2375,8 +2375,10 @@ int __must_check write_one_page(struct page *page);
 void task_dirty_inc(struct task_struct *tsk);
 
 /* readahead.c */
+
 #define VM_MAX_READAHEAD	CONFIG_VM_MAX_READAHEAD	/* kbytes */
-#define VM_MIN_READAHEAD	16	/* kbytes (includes current page) */
+#define VM_MIN_READAHEAD	64	/* kbytes (includes current page) */
+>>>>>>> 678867b6b3ce0... mm: Do readahead if requested size is over 64 KiB
 
 int force_page_cache_readahead(struct address_space *mapping, struct file *filp,
 			pgoff_t offset, unsigned long nr_to_read);
