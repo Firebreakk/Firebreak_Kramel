@@ -37,6 +37,9 @@
 static short backlight_min = 0;
 module_param(backlight_min, short, 0644);
 
+static short backlight_max = 0;
+module_param(backlight_max, short, 0644);
+
 static struct pm_qos_request lcdspeedup_little_cpu_qos;
 static struct pm_qos_request lcdspeedup_big_cpu_qos;
 
@@ -223,6 +226,9 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 
 	if (bl_temp != 0 && bl_temp < backlight_min)
 		bl_temp = backlight_min;
+
+	if (backlight_max != 0 && bl_temp > backlight_max)
+		bl_temp = backlight_max;
 
 	pr_debug("bl_scale = %u, bl_scale_ad = %u, bl_lvl = %u\n",
 		bl_scale, bl_scale_ad, (u32)bl_temp);
