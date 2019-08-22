@@ -6225,8 +6225,6 @@ static int calc_sg_energy(struct energy_env *eenv)
 
 		if (idle_idx > sg->sge->nr_idle_states - 1)
 			idle_idx = sg->sge->nr_idle_states - 1;
-#ifdef CONFIG_SCHED_SMT
-DEFINE_STATIC_KEY_FALSE(sched_smt_present);
 
 		idle_power = sg->sge->idle_states[idle_idx].power;
 		idle_energy   = SCHED_CAPACITY_SCALE - sg_util;
